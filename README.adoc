@@ -47,11 +47,11 @@ Le projet devra donc les respecter.
     - `[<noER>] .` ; pour entrer dans un répertoire à condition que le `ǸoER` désigne un répertoire. Exemple "4 ."
     - `mkdir <nom>` ; pour créer un répertoire
     - `[<noER>] visu` ; permet de voir le contenu d'un fichier texte. Si le fichier n'est pas de type texte, vous afficherez sa taille.
-    - `find <nom fichier>` ; Recherche dans toutes la sous arborescences le fichier et affiche le chemin et le(s) fichier(s) trouvé(s).
+    - `find <nom fichier>` ; Recherche dans toutes les sous répertoires du répertoire courant, le(s) fichier(s) et les affiches.
 
-* L'application permet à l'utilisateur d'annoter un _ER_
+* L'application permettra à l'utilisateur d'annoter un _ER_
   - l'annotation consiste à ajouter ou retirer un texte associé à un _ER_. 
-    * Par exemples:
+  - Par exemples:
        ** 3 + "ceci est un texte" ; le texte est ajouté ou concaténé au texte existant sur l'_ER_
        ** 3 -  ; retire tout le texte associé à l'_ER_ 3
 
@@ -62,12 +62,12 @@ Le projet devra donc les respecter.
 * L'interface proposera une visualisation du répertoire courant en mode texte en quatre parties. La partie:
   . présente le cheminement depuis la racine du système de fichier de votre système de fichier.
   . affiche la note associé à l'élément courant `NoER` si il y en a. L'élément courant correspond à la désignation par l'utilisateur ou désigné dans la dernière commande. Exemple `3 copy`, 3 devient l'élément courant.
-  . affiche les _ER_ du répertoire
-  . présente un prompt invitant l'utilisateur à tapez une des commandes présentés ci-dessus.
+  . affiche les _ER_ du répertoire avec les _NoER_
+  . présente un prompt invitant l'utilisateur à saisir une des commandes présentées ci-dessus.
 
 * Une interface spécifique pourra être proposée pour des situations particulières (visualiser le contenu d'un fichier, une aide, ...).
 
-* Toutes les notes associées aux éléments du répertoire seront stockés dans un seul fichier appelé "notes.txt" du répertoire courant.
+* Toutes les notes associées aux éléments du répertoire courant seront stockés dans un seul fichier appelé "notes.txt" dans le répertoire courant.
 
 
 
