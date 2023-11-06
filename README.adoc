@@ -1,0 +1,113 @@
+= Jeu _Rogue-Like_
+
+_NOM1, Prénom1, no_étudiant1, NC1_
+
+_NOM2, Prénom2, no_étudiant2, NC2_
+
+_GIT url_ 
+
+L'objet de ce mini-projet est de développer un https://fr.wikipedia.org/wiki/Gestionnaire_de_fichier[gestionnaire de fichiers] en commande en ligne. Le gestionnaire de fichier s'appuie sur le système de fichier de votre système d'exploitation. Le gestionnaire de fichier doit offrir la possibilité d'annoter les éléments contenus dans un répertoire (i.e.fichiers, répertoires).
+Vous devrez respecter les contraintes fonctionnelles et techniques mentionnées ci-dessous.
+
+[IMPORTANT]
+====
+Vous respecterez les contraintes suivantes:
+
+* Ce mini-projet est à réaliser en Java par groupe de 2 étudiants.
+  - les 2 étudiants doivent coopérer à travers un même git. Un des deux étudiants devra permettre à l'autre d'utiliser son git.
+* Il devra comporter une documentation dans ce git.
+  - La documentation devra décrire l'usage de l'application (_manuel utilisateur_) ainsi que la conception du jeu (_manuel technique_).
+  - La documentation doit être un fichier .md ou .adoc et accessible depuis le `git`
+* Vous utiliserez `git` en effectuant des commits réguliers comportant des messages informatifs. L'usage des "pull requests" est également fortement conseillé, montrant ainsi votre collaboration au sein du groupe. 
+* Le _build_ sera assuré par Maven et plus précisément Maven wrapper (déjà intégré dans le projet).
+Aucune manipulation en dehors de Maven ne devra être nécessaire.
+* La version de Java à utiliser est la https://adoptium.net/[version 17].
+* Le _build_ devra intégrer `checkstyle` pour la vérification des règles de codages Google.
+Le projet devra donc les respecter.
+`checkstyle` devra être exécuté automatiquement durant la phase `validate` du cycle de vie par défaut.
+* Des tests unitaires https://junit.org/junit5/docs/current/user-guide/[JUnit 5] (version https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter/5.9.1[_5.9.1_]) devront être disponibles pour la plupart des méthodes développées.
+* Un outil de https://fr.wikipedia.org/wiki/Couverture_de_code[_Code Coverage_] devra être intégré au _build_
+* Les fonctionnalités du langage Java devront être utilisées au mieux (POO, exceptions, librairie de collections, I/O, …).
+* L'application devra pouvoir être exécutée à partir d'un `jar` incluant toutes les dépendances.
+====
+
+== Description du gestionnaire de fichiers
+* L'interface proposera une visualisation du contenu d'un répertoire en mode texte. A chaque élément du répertoire (**ER**), on associera un numero (**NoER**) permettant de le designer lors de l'utilisation d'une des commandes définies ci-dessous.
+
+* Les actions de l'utilisateur seront saisies au clavier sous la forme `[<noER>] [<commande>] [<nom>]`. Les crochets signifient "facultatif" 
+  - Par exemples:
+   ** `3 cut` ; efface le troisième fichier.
+   ** `3`  ; l'utilisateur désigne le troisième élément du répertoire.
+  - Si l'utilisateur ne place pas de `ǸoER`, c'est le dernier `ǸoER` utilisé qui sera utilisé pour une commande qui en nécessite.
+  - Les commandes du gestion de fichiers à implémenter sont:
+    - `copy`
+    - `past`
+    - `cut`
+    - .. ; pour remonter d'un cran dans le système de fichiers
+    - `.` ; pour entrer dans un répertoire à condition que le `ǸoER` désigne un répertoire. Exemple "4 ."
+    - `mkdir <nom>` ; pour créer un répertoire
+    - `visu` ; permet de voir le contenu d'un fichier texte. Si le fichier n'est pas de type texte, vous afficherez sa taille.
+    - `find <nom fichier>` ; Recherche dans toutes la sous arborescences le fichier et affiche le chemin et le(s) fichier(s) trouvé(s).
+
+* L'application permet à l'utilisateur d'annoter un _ER_
+  - l'annotation consiste à ajouter ou retirer un texte associé à un _ER_. 
+    * Par exemples:
+       ** 3 + "ceci est un texte" ; le texte est ajouté ou concaténé au texte existant sur l'_ER_
+       ** 3 -  ; retire tout le texte associé à l'_ER_ 3
+
+ 
+
+== Description de l'application à réaliser
+
+* L'interface proposera une visualisation de l'ERs en mode texte en quatre parties. La partie:
+  . présente le cheminement depuis la racine du système de fichier de votre système de fichier.
+  . affiche la note associé à l'élément courant `NoER`. L'élément courant correspond à la désignation par l'utilisateur ou désigné dans la dernière commande. Exemple `3 copy`, 3 devient l'élément courant. On affiche rien, si il n'y a pas d'élément courant.
+  . affiche les ER du répertoire
+  . présente un prompt invitant l'utilisateur à tapez une commande.
+
+* Une interface spécifique pourra être proposée pour des situations particulières (visualiser le contenu d'un fichier, une aide, ...).
+
+* Toutes les notes associés aux éléments du répertoire seront stockés dans un seul fichier du répertoire courant.
+
+
+
+== Références
+* Article Wikipedia https://fr.wikipedia.org/wiki/Gestionnaire_de_fichiers[Gestionnaire de fichiers]
+
+* Quelques bibliothèques :
+http://fusesource.github.io/jansi/[JAnsi] (couleur dans un terminal),
+https://github.com/jline/jline3[JLine] (gestion des saisies)
+
+== Manuel utilisateur
+
+> À compléter :
+> Comment l'utilisateur peut savoir quelle commande taper pour un élément du répertoire désigné ?
+> Quelles sont les mises à jours du fichier des annotations à effectuer en fonction des types de commandes ?
+> Y a t il des bibliothèques Java qui permettront de prendre en charge la visualisation d'une image png si l'utilisateur veut l'afficher ? 
+> Quelles sont les commandes qui seraient utiles de rajouter ?
+> Quelles améliorations peut on envisager pour rendre l'usage de l'interface clavier plus souples/efficaces pour l'utilisateur ?
+> Quelles évolutions peut-on envisager ?
+
+== Manuel technique
+=== Compiler le projet
+.Sous Linux
+----
+$ ./mvnw package
+----
+
+.Sous Windows
+----
+> mvnw.cmd package
+----
+
+=== Exécuter l'application
+----
+$ java -jar target/explorer-1.0.jar
+----
+
+> À compléter :
+> Comment consulter le rapport de couverture de code par les tests ?
+> Quelles bibliothèques ont été utilisées et pourquoi ?
+> Quel est le rôle des différentes classes ?
+> Quels traitements sont réalisés pour gérer une commande saisie par l'utilisateur ? Donnez un exemple.
+> Quelles améliorations peut-on envisager ?
