@@ -34,7 +34,7 @@ Le projet devra donc les respecter.
 == Description du gestionnaire de fichiers
 * L'interface proposera une visualisation du contenu d'un répertoire en mode texte. A chaque élément du répertoire (**ER**), on associera un numero (**NoER**) permettant de le designer lors de l'utilisation d'une des commandes définies ci-dessous.
 
-* Les actions de l'utilisateur seront saisies au clavier sous la forme `[<noER>] [<commande>] [<nom>]`. Les crochets signifient "facultatif" 
+* Les actions de l'utilisateur seront saisies au clavier sous la forme `[<noER>] [<commande>] [<nom>]`. Les crochets signifient "optionnel" 
   - Par exemples:
    ** `3 cut` ; efface le troisième fichier.
    ** `3`  ; l'utilisateur désigne le troisième élément du répertoire.
@@ -43,8 +43,8 @@ Le projet devra donc les respecter.
     - `[<noER>] copy`
     - `past`  ; si l’élément existe, alors le nom du nouvel élément sera concaténé avec "-copy"
     - `[<noER>] cut`
-    - .. ; pour remonter d'un cran dans le système de fichiers
-    - `.` ; pour entrer dans un répertoire à condition que le `ǸoER` désigne un répertoire. Exemple "4 ."
+    - ``..`` ; pour remonter d'un cran dans le système de fichiers
+    - `[<noER>] .` ; pour entrer dans un répertoire à condition que le `ǸoER` désigne un répertoire. Exemple "4 ."
     - `mkdir <nom>` ; pour créer un répertoire
     - `[<noER>] visu` ; permet de voir le contenu d'un fichier texte. Si le fichier n'est pas de type texte, vous afficherez sa taille.
     - `find <nom fichier>` ; Recherche dans toutes la sous arborescences le fichier et affiche le chemin et le(s) fichier(s) trouvé(s).
