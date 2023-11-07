@@ -32,28 +32,28 @@ Le projet devra donc les respecter.
 ====
 
 == Description du gestionnaire de fichiers
-* L'interface proposera une visualisation du contenu d'un répertoire en mode texte. A chaque élément du répertoire (**ER**), on associera un numero (**NoER**) permettant de le designer lors de l'utilisation d'une des commandes définies ci-dessous.
+* L'interface proposera une visualisation du contenu d'un répertoire en mode texte. A chaque élément du répertoire (**ER**), on associera un numero (**NER**) permettant de le designer lors de l'utilisation d'une des commandes définies ci-dessous.
 
-* Les actions de l'utilisateur seront saisies au clavier sous la forme `[<noER>] [<commande>] [<nom>]`. Les crochets signifient "optionnel" 
+* Les actions de l'utilisateur seront saisies au clavier sous la forme `[<NER>] [<commande>] [<nom>]`. Les crochets signifient "optionnel" 
   - Par exemples:
    ** `3 cut` ; efface le troisième fichier.
    ** `3`  ; l'utilisateur désigne le troisième élément du répertoire.
-  - Si l'utilisateur ne place pas de `ǸoER`, c'est le dernier `ǸoER` utilisé qui sera utilisé pour une commande qui en nécessite. Exemple `visu`
+  - Si l'utilisateur ne place pas de NER, c'est le dernier NER utilisé qui sera utilisé pour une commande qui en nécessite. Exemple `visu`
   - Les commandes du gestion de fichiers à implémenter sont:
-    - `[<noER>] copy`
+    - `[<NER>] copy`
     - `past`  ; si l’élément existe, alors le nom du nouvel élément sera concaténé avec "-copy"
-    - `[<noER>] cut`
-    - ``..`` ; pour remonter d'un cran dans le système de fichiers
-    - `[<noER>] .` ; pour entrer dans un répertoire à condition que le `ǸoER` désigne un répertoire. Exemple "4 ."
+    - `[<NER>] cut`
+    - `..` ; pour remonter d'un cran dans le système de fichiers
+    - `[<NER>] .` ; pour entrer dans un répertoire à condition que le NER désigne un répertoire. Exemple "4 ."
     - `mkdir <nom>` ; pour créer un répertoire
-    - `[<noER>] visu` ; permet de voir le contenu d'un fichier texte. Si le fichier n'est pas de type texte, vous afficherez sa taille.
+    - `[<NER>] visu` ; permet de voir le contenu d'un fichier texte. Si le fichier n'est pas de type texte, vous afficherez sa taille.
     - `find <nom fichier>` ; Recherche dans toutes les sous répertoires du répertoire courant, le(s) fichier(s) et les affiches.
 
-* L'application permettra à l'utilisateur d'annoter un _ER_
-  - l'annotation consiste à ajouter ou retirer un texte associé à un _ER_. 
+* L'application permettra à l'utilisateur d'annoter un ER
+  - l'annotation consiste à ajouter ou retirer un texte associé à un ER. 
   - Par exemples:
-       ** 3 + "ceci est un texte" ; le texte est ajouté ou concaténé au texte existant sur l'_ER_
-       ** 3 -  ; retire tout le texte associé à l'_ER_ 3
+       ** 3 + "ceci est un texte" ; le texte est ajouté ou concaténé au texte existant sur l'ER
+       ** 3 -  ; retire tout le texte associé à l'ER 3
 
  
 
@@ -61,13 +61,13 @@ Le projet devra donc les respecter.
 
 * L'interface proposera une visualisation du répertoire courant en mode texte en quatre parties. La partie:
   . présente le cheminement depuis la racine du système de fichier de votre système de fichier.
-  . affiche la note associé à l'élément courant `NoER` si il y en a. L'élément courant correspond à la désignation par l'utilisateur ou désigné dans la dernière commande. Exemple `3 copy`, 3 devient l'élément courant.
-  . affiche les _ER_ du répertoire avec les _NoER_
+  . affiche la note associée à l'élément courant NER si elle existe. L'élément courant correspond à la désignation du NER par l'utilisateur ou désigné dans la dernière commande utilisée. Exemple `3 copy`, 3 devient l'élément courant.
+  . affiche les ER du répertoire avec leurs NER
   . présente un prompt invitant l'utilisateur à saisir une des commandes présentées ci-dessus.
 
 * Une interface spécifique pourra être proposée pour des situations particulières (visualiser le contenu d'un fichier, une aide, ...).
 
-* Toutes les notes associées aux éléments du répertoire courant seront stockés dans un seul fichier appelé "notes.txt" dans le répertoire courant.
+* Toutes les notes associées aux éléments du répertoire courant seront stockés dans un seul fichier appelé "notes" dans le répertoire courant. Ce fichier peut contenir des objets "sérialisés" ou d'autres formats.
 
 
 
