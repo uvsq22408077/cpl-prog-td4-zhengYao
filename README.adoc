@@ -1,4 +1,4 @@
-= _Gestionnaire de Fichiers en Commandes en Ligne avec Annotations _
+= Gestionnaire de Fichiers en Commandes en Ligne avec Annotations
 
 _NOM1, Prénom1, no_étudiant1, NC1_
 
