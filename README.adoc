@@ -1,12 +1,13 @@
-= Gestionnaire de Fichiers en Commandes en Ligne avec Annotations
+= Un jeu de carte Chinois très populaire
 
-_NOM1, Prénom1, no_étudiant1, NC1_
+_NOM1, Prénom1, no_étudiant1, NC1_, _git login_
 
-_NOM2, Prénom2, no_étudiant2, NC2_
+_NOM2, Prénom2, no_étudiant2, NC2_, _git login_
 
 _GIT url_ 
 
-L'objet de ce mini-projet est de développer un https://fr.wikipedia.org/wiki/Gestionnaire_de_fichier[gestionnaire de fichiers] en commande en ligne. Le gestionnaire de fichier s'appuie sur le système de fichier de votre système d'exploitation. Le gestionnaire de fichier doit offrir la possibilité d'annoter les éléments contenus dans un répertoire (i.e.fichiers, répertoires).
+L'objet de ce mini-projet est de développer le jeu de carte https://boardgamegeek.com/boardgame/70451/zheng-fen[zheng-fen]. qui doit fonctionner en commande en ligne. Le jeux doit permettre de jouer contre deux autres adversaires qui sera assurer par l'ordinateur. Pour cela, vous devez développer des joueurs virtuels. Le joueur virtuel peut jouer comme un enfant (applique une stratégie basique) ou bien connaître certaines stratégies. Le joueur non virtuel (JNV) doit voir le déroulé de la partie dans un terminal (pas d'interface graphique).
+
 Vous devrez respecter les contraintes fonctionnelles et techniques mentionnées ci-dessous.
 
 [IMPORTANT]
@@ -14,12 +15,12 @@ Vous devrez respecter les contraintes fonctionnelles et techniques mentionnées 
 Vous respecterez les contraintes suivantes:
 
 * Ce mini-projet est à réaliser en Java par groupe de 2 étudiants.
-  - les 2 étudiants doivent coopérer à travers un même git. Un des deux étudiants devra permettre à l'autre d'utiliser son git.
+  - les 2 étudiants doivent coopérer à travers un même git. Un des deux étudiants devra permettre à l'autre d'utiliser son git. Chaque utilisateur devra faire au moins un "merge request". 
 * Il devra comporter une documentation dans ce git.
   - La documentation devra décrire l'usage de l'application (_manuel utilisateur_) ainsi que la conception du jeu (_manuel technique_).
-  - La documentation doit être un fichier .md ou .adoc et accessible depuis le `git`
-* Vous utiliserez `git` en effectuant des commits réguliers comportant des messages informatifs. L'usage des "pull requests" est également fortement conseillé, montrant ainsi votre collaboration au sein du groupe. 
-* Le _build_ sera assuré par Maven et plus précisément Maven wrapper (déjà intégré dans le projet).
+  - La documentation doit être un fichier `.md` ou `.adoc` et accessible depuis le `git`
+* Vous utiliserez `git` en effectuant des commits réguliers comportant des messages informatifs. L'usage des "pull requests" est également exigé, montrant ainsi votre collaboration au sein du groupe. 
+* Le _build_ sera assuré par _Maven_ et plus précisément _Maven wrapper_ (déjà intégré dans le projet).
 Aucune manipulation en dehors de Maven ne devra être nécessaire.
 * La version de Java à utiliser est la https://adoptium.net/[version 17].
 * Le _build_ devra intégrer `checkstyle` pour la vérification des règles de codages Google.
@@ -31,48 +32,43 @@ Le projet devra donc les respecter.
 * L'application devra pouvoir être exécutée à partir d'un `jar` incluant toutes les dépendances.
 ====
 
-== Description du gestionnaire de fichiers
-* L'interface proposera une visualisation du contenu d'un répertoire en mode texte. A chaque élément du répertoire (**ER**), on associera un numero (**NER**) permettant de le designer lors de l'utilisation d'une des commandes définies ci-dessous.
-
-* Les actions de l'utilisateur seront saisies au clavier sous la forme `[<NER>] [<commande>] [<nom>]`. Les crochets signifient "optionnel" 
-  - Par exemples:
-   ** `3 cut` ; efface le troisième fichier.
-   ** `3`  ; l'utilisateur désigne le troisième élément du répertoire.
-  - Si l'utilisateur ne place pas de NER, c'est le dernier NER utilisé qui sera utilisé pour une commande qui en nécessite. Exemple `visu`
-  - Les commandes du gestion de fichiers à implémenter sont:
-    - `[<NER>] copy`
-    - `past`  ; si l’élément existe, alors le nom du nouvel élément sera concaténé avec "-copy"
-    - `[<NER>] cut`
-    - `..` ; pour remonter d'un cran dans le système de fichiers
-    - `[<NER>] .` ; pour entrer dans un répertoire à condition que le NER désigne un répertoire. Exemple "4 ."
-    - `mkdir <nom>` ; pour créer un répertoire
-    - `[<NER>] visu` ; permet de voir le contenu d'un fichier texte. Si le fichier n'est pas de type texte, vous afficherez sa taille.
-    - `find <nom fichier>` ; Recherche dans toutes les sous répertoires du répertoire courant, le(s) fichier(s) et les affiches.
-
-* L'application permettra à l'utilisateur d'annoter un ER
-  - l'annotation consiste à ajouter ou retirer un texte associé à un ER. 
-  - Par exemples:
-       ** 3 + "ceci est un texte" ; le texte est ajouté ou concaténé au texte existant sur l'ER
-       ** 3 -  ; retire tout le texte associé à l'ER 3
+== Description de l'application à réaliser
+* Pour chaque tour du jeu, l'interface:
+  - proposera une visualisation en message textuel clair de l'action émise par chaque joueur. Par exemple, une action peut être _"je mets 3 rois suivie de 2 cartes de valeur 8"_.
+    - chaque joueur doit s'afficher dans une couleur distinct.  
+  - doit vérifier si la phrase est correcte et si sa proposition est valide en répondant de manière très poli "désolé XXX, mais vous n'avez qu'un roi"
+  - l'interface doit s'assurer qu'une partie se termine et permettre au joueur qui a gagné de débuter la nouvelle partie.
+  - l'interface doit vérifier que le nombre de joueurs est entre 3 et 5.
+  - on doit afficher le nombre de cartes de chaque joueur, mais pas les valeurs qui possèdent.
+  - pour toutes les actions effectuées par le programme comme par exemple mélange les couleurs, l'interface doit afficher un messages du type, "je viens de ...."
 
  
 
-== Description de l'application à réaliser
+== Contraintes à respecter
 
-* L'interface proposera une visualisation du répertoire courant en mode texte en quatre parties. La partie:
-  . présente le cheminement depuis la racine du système de fichier de votre système de fichier.
-  . affiche la note associée à l'élément courant NER si elle existe. L'élément courant correspond à la désignation du NER par l'utilisateur ou désigné dans la dernière commande utilisée. Exemple `3 copy`, 3 devient l'élément courant.
-  . affiche les ER du répertoire avec leurs NER
-  . présente un prompt invitant l'utilisateur à saisir une des commandes présentées ci-dessus.
+* Dans ce jeu, un joueur peu décider d'abandonner. Ca doit être un événement rare, mais possible. 
+* L'ordre suivant doit être respecté: Le joker est le plus grand, suivie du 2, 1 (as), roi, ... 3.
+* On mémorisera l'historique d'une partie dans une collection et stocké dans un fichier.
+    - il sera par exemple possible de rejouer une partie.
 
-* Une interface spécifique pourra être proposée pour des situations particulières (visualiser le contenu d'un fichier, une aide, ...).
+* Une interface spécifique pourra être proposée pour une aide, voir un bilan du nombre de parties gagne par chacun/
+* Une interface spécifique pourra être proposée pour "espionner" pourquoi chaque joueur à jouer tel ou tel carte.
 
-* Toutes les notes associées aux éléments du répertoire courant seront stockés dans un seul fichier appelé "notes" dans le répertoire courant. Ce fichier peut contenir des objets "sérialisés" ou d'autres formats.
+* Vous devez faire au moins un joueur virtuel qui joue comme un enfant.
+* Des points bonus seront donné pour ceux qui implémente un moteur un peu plus complexe. Par exemple, je peux jouer 1, 2 ou 3 cartes identiques, mais si j'ai 3 cartes identiques, je peux aussi decider de jouer une par une, ou bien de jouer une suivie de deux etc. Pour vous livrer un secret, les cartes les plus faibles sont les plus difficiles à s'en débarrasser et peuvent clouer un joueur.
+   * Toute la problématique dans ce cas et de décider comment "assembler vos cartes" pour optimiser vos chances de tous les débarrasser.
 
 
 
 == Références
-* Article Wikipedia https://fr.wikipedia.org/wiki/Gestionnaire_de_fichiers[Gestionnaire de fichiers]
+
+**Attention**: il existe plusieurs variantes, mais celui de reference est dans le premier lien avec les contraintes ci-dessus.
+
+* Description du jeu:
+  - https://boardgamegeek.com/boardgame/70451/zheng-fen
+  - https://chrisenvadrouille.wordpress.com/2013/07/05/jour-46-les-regles-dun-jeu-de-cartes-chinois/
+  - https://www.pagat.com/climbing/doudizhu.html
+
 
 * Quelques bibliothèques :
 http://fusesource.github.io/jansi/[JAnsi] (couleur dans un terminal),
@@ -80,12 +76,12 @@ https://github.com/jline/jline3[JLine] (gestion des saisies)
 
 == Manuel utilisateur
 
-> À compléter :
-> Comment l'utilisateur peut savoir quelle commande taper pour un élément du répertoire désigné ?
-> Quelles sont les mises à jours du fichier des annotations à effectuer en fonction des types de commandes ?
-> Y a t il des bibliothèques Java qui permettront de prendre en charge la visualisation d'une image png si l'utilisateur veut l'afficher ? 
-> Quelles sont les commandes qui seraient utiles de rajouter ?
-> Quelles améliorations peut on envisager pour rendre l'usage de l'interface clavier plus souples/efficaces pour l'utilisateur ?
+> À compléter de manière exhaustive:
+> Comment est gérer les différents utilisateurs ?
+> Décrire la technique utiliser pour décider comment les joueurs virtuels décide l'assemblage des cartes. ?
+> Y a t il possibilité qu'un joueur change d'assemblage des cartes en cours de parties et dans tout les cas décrire le pourquoi et le comment ? 
+> Quelles sont les modifications/extensions à apporter si l'on veut qu'il n'y ai que des joueurs virtuels ?
+> Quelles améliorations peut on envisager pour rendre le jeu plus intéressant/performant pour l'utilisateur ?
 > Quelles évolutions peut-on envisager ?
 
 == Manuel technique
@@ -102,7 +98,7 @@ $ ./mvnw package
 
 === Exécuter l'application
 ----
-$ java -jar target/explorer-1.0.jar
+$ java -jar target/zhangyao-1.0.jar
 ----
 
 > À compléter :
