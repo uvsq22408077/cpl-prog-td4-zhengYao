@@ -6,7 +6,7 @@ _NOM2, Prénom2, no_étudiant2, NC2_, _git login_
 
 _GIT url_ 
 
-L'objet de ce mini-projet est de développer le jeu de carte https://boardgamegeek.com/boardgame/70451/zheng-fen[zheng-fen] qui doit fonctionner en mode commande en ligne. Le jeux doit permettre de jouer contre un à trois autres adversaires qui sont des Joueurs Virtuels **JV**. Chaque JV est joue grace à un Moteur d'Inference **MI** executé par une class de votre programme. Un MI peut jouer comme un enfant (applique une stratégie basique) ou bien jouer certaines stratégies. Le déroulé d'une partie est contenu dans un terminal (pas d'interface graphique).
+L'objet de ce mini-projet est de développer le jeu de carte https://boardgamegeek.com/boardgame/70451/zheng-fen[zheng-fen] qui doit fonctionner en mode commande en ligne. Le jeux doit permettre de jouer contre un à trois autres adversaires qui sont des Joueurs Virtuels **JV**. Chaque JV joue grace à un Moteur d'Inference **MI** qui est modélisé par une "class" de votre programme. Un MI peut jouer comme un enfant qui applique une stratégie basique, ou bien jouer à l'aide de certaines stratégies. Le déroulé d'une partie est contenu dans un "terminal" (pas d'interface graphique).
 
 Vous devrez respecter les contraintes fonctionnelles et techniques mentionnées ci-dessous.
 
@@ -43,12 +43,11 @@ Le projet devra donc les respecter.
     
   - doit afficher chaque joueur et ses messages dans une couleur distincte.
 
-  - doit vérifier si la phrase est correcte et si sa proposition est valide en répondant de __manière très polie__. Exemple: "désolé XXX, mais vous n'avez qu'un roi"
+  - doit vérifier si la phrase exprimée par le joueur non JV est correcte et si sa proposition est valide en répondant de __manière très polie__. Exemple: "désolé XXX, mais vous n'avez qu'un roi"
 
+  - doit afficher le nombre de cartes de chaque JV, mais pas ses valeurs de carte.
 
-  - doit afficher le nombre de cartes de chaque joueur, mais pas les valeurs qui possèdent.
-
-  - doit afficher vos cartes, de manière ordonnées du plus fort au plus faible suivant l'ordre décrit ci-dessous.
+  - doit afficher vos cartes (le non JV), de manière ordonnées du plus fort au plus faible suivant l'ordre décrit ci-dessous.
 
   - doit pour toutes les actions effectuées par l'application afficher un message clair. Par exemple, si il y a mélange les cartes, un messages du type, "je viens de ...." sera affiché
 
@@ -65,17 +64,17 @@ Le projet devra donc les respecter.
 
 * L'ordre du plus fort au plus faible des cartes doit être: Le joker est le plus grand, suivie du 2, 1 (as), roi, ... 3.
 
-* On mémorisera l'historique d'une partie dans une collection qui sera stocké dans un fichier.
+* On mémorisera l'historique d'une partie dans une "collection" qui sera stocké dans un fichier.
     - il sera par exemple possible de rejouer une partie.
+    - il sera possible d'afficher le déroulé d'une partie
 
 * Une interface spécifique pourra être proposée pour une aide ou pour voir le nombre de parties gagnées par chaque joueur.
 
-
 * Vous devez implementer un Moteur d'Inférence **MI** qui joue comme un enfant.
 
-  ** L'enfant se débarrasse de ses cartes au fur et à mesure de ce qu'il peut.
+  ** L'enfant se débarrasse de ses cartes au fur et à mesure de ce qu'il peut sans aucun assemblage de ses cartes. Exemple, il ne va pas decider de faire une "suite" de 6 cartes, sachant que ca nécessite de briser des couples ou trio de cartes de même valeurs.
 
-* Vous devez également implémenter un MI qui joue de manière plus "intelligente". 
+* Vous devez également implémenter au moins un MI qui joue de manière plus "intelligente". 
 
   ** Par exemple, je peux jouer 1, 2 ou 3 cartes identiques, mais si j'ai 3 cartes identiques, je peux aussi decider de jouer une par une, ou bien de jouer une suivie de deux. 
 
