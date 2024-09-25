@@ -1,96 +1,85 @@
-= Un jeu de carte Chinois très populaire
+= Un jeu de carte chinois très populaire
 
+== Identité
+Complétez les informations ci-dessous
 _NOM1, Prénom1, no_étudiant1, NC1_, _git login_
 
 _NOM2, Prénom2, no_étudiant2, NC2_, _git login_
 
 _GIT url_ 
 
-L'objet de ce mini-projet est de développer le jeu de carte https://boardgamegeek.com/boardgame/70451/zheng-fen[zheng-fen] qui doit fonctionner en mode commande en ligne. Le jeux doit permettre de jouer contre un à trois autres adversaires qui sont des Joueurs Virtuels **JV**. Chaque JV joue grace à un Moteur d'Inference **MI** qui est modélisé par une "class" de votre programme. Un MI peut jouer comme un enfant qui applique une stratégie basique, ou bien jouer à l'aide de certaines stratégies. Le déroulé d'une partie est contenu dans un "terminal" (pas d'interface graphique).
+== Sujet
+L'objet de ce mini-projet est de développer le jeu de carte https://boardgamegeek.com/boardgame/70451/zheng-fen[zheng-fen] qui doit fonctionner en mode commande en ligne.
+La règle du jeu est disponible dans la https://boardgamegeek.com/filepage/205610/regles-en-francais-plus-aide-de-jeu[section _Files_] du site précédent.
+Le jeu doit permettre de jouer contre un à trois autres adversaires qui sont des Joueurs Virtuels **JV**.
+Chaque JV joue grace à un Moteur de Jeu **MJ** modélisé par une classe de votre programme.
+Un MJ peut jouer comme un enfant qui applique une stratégie basique, ou bien jouer à l'aide de stratégies plus sophistiquées.
+Une partie se déroule dans un terminal (pas d'interface graphique).
 
 Vous devrez respecter les contraintes fonctionnelles et techniques mentionnées ci-dessous.
 
 [IMPORTANT]
 ====
-Vous respecterez les contraintes de développements suivantes:
+Vous respecterez les contraintes de développement suivantes:
 
 * Ce mini-projet est à réaliser en Java par groupe de 2 étudiants.
-  - les 2 étudiants doivent coopérer à travers un même git. Un des deux étudiants devra permettre à l'autre d'utiliser son git. Chaque utilisateur devra faire au moins un "merge request". 
-* Il devra comporter une documentation dans ce git.
+  - les 2 étudiants doivent coopérer à travers un même git (celui créé par _github classroom_).
+  Les contributions des participants (_commits_) doivent être équilibrées.
+* Il devra comporter une documentation dans ce fichier.
   - La documentation devra décrire l'usage de l'application (_manuel utilisateur_) ainsi que la conception du jeu (_manuel technique_).
-  - La documentation doit être un fichier `.md` ou `.adoc` et accessible depuis le `git`
-* Vous utiliserez `git` en effectuant des commits réguliers comportant des messages informatifs. L'usage des "pull requests" est également exigé, montrant ainsi votre collaboration au sein du groupe. 
+* Vous utiliserez `git` en effectuant des commits réguliers comportant des messages informatifs.
+L'usage des branches est également exigé, montrant ainsi votre collaboration au sein du groupe.
+* La version de Java à utiliser est la https://adoptium.net/[version 17] (ou plus récente).
 * Le _build_ sera assuré par _Maven_ et plus précisément _Maven wrapper_ (déjà intégré dans le projet).
-Aucune manipulation en dehors de Maven ne devra être nécessaire.
-* La version de Java à utiliser est la https://adoptium.net/[version 17].
-* Le _build_ devra intégrer `checkstyle` pour la vérification des règles de codages Google.
-Le projet devra donc les respecter.
-`checkstyle` devra être exécuté automatiquement durant la phase `validate` du cycle de vie par défaut.
-
-* Des tests unitaires https://junit.org/junit5/docs/current/user-guide/[JUnit 5] (version https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter/5.9.1[_5.9.1_]) devront être disponibles pour la plupart des méthodes développées.
-
+Aucune manipulation en dehors de Maven ne devra être nécessaire pour la compilation.
+* Le projet devra respecter les règles de codage Google (vérification par `checkstyle` déjà intégré dans le projet).
+* Des tests unitaires https://junit.org/junit5/docs/current/user-guide/[JUnit 5] devront être disponibles pour une part significative des méthodes développées.
 * Un outil de https://fr.wikipedia.org/wiki/Couverture_de_code[_Code Coverage_] devra être intégré au _build_
-
 * Les fonctionnalités du langage Java devront être utilisées au mieux (POO, exceptions, librairie de collections, I/O, …).
 * L'application devra pouvoir être exécutée à partir d'un `jar` incluant toutes les dépendances.
 ====
 
-== Description de l'application à réaliser
-
+=== Description de l'application à réaliser
 * Pour chaque tour du jeu, l'interface:
-
-  - visualisera les actions de chaque joueur par des messages textuels clairs. Par exemple, une action peut être _"je mets 3 rois suivie de 2 cartes de valeur 8"_.
-    
+  - visualisera les actions de chaque joueur par des messages textuels clairs.
+    Par exemple, une action peut être _"je mets 3 rois suivis de 2 cartes de valeur 8"_.  
   - doit afficher chaque joueur et ses messages dans une couleur distincte.
-
   - doit vérifier si la phrase exprimée par le joueur non JV est correcte et si sa proposition est valide en répondant de __manière très polie__. Exemple: "désolé XXX, mais vous n'avez qu'un roi"
-
   - doit afficher le nombre de cartes de chaque JV, mais pas ses valeurs de carte.
-
-  - doit afficher vos cartes (le non JV), de manière ordonnées du plus fort au plus faible suivant l'ordre décrit ci-dessous.
-
-  - doit pour toutes les actions effectuées par l'application afficher un message clair. Par exemple, si il y a mélange les cartes, un messages du type, "je viens de ...." sera affiché
-
+  - doit afficher vos cartes (celles du joueur non JV), de manière ordonnées du plus fort au plus faible suivant l'ordre décrit ci-dessous.
+  - doit pour toutes les actions effectuées par l'application afficher un message clair.
+    Par exemple, s'il y a un mélange des cartes, un messages du type _"je viens de …."_ sera affiché.
 *  l'application coordonne le jeu de 2 à 4 joueurs.
-
 *  l'application doit s'assurer qu'une partie se termine bien et permettre au joueur qui a gagné de débuter la nouvelle partie.
 
 
-== Contraintes à respecter
-
-* C'est toujours à un des JV de distribuer les cartes. C'est le dernier joueur qui a gagné qui commence. Au début, on peut choisir celui qui a l'as de pic pour débuter.
-
-* Dans ce jeu, un joueur peu décider d'abandonner si il juge qu'il n'a aucune chance de gagner. C'est un événement rare (surtout chez les JV), mais possible.
-
-* L'ordre du plus fort au plus faible des cartes doit être: Le joker est le plus grand, suivie du 2, 1 (as), roi, ... 3.
-
-* On mémorisera l'historique d'une partie dans une "collection" qui sera stocké dans un fichier.
-    - il sera par exemple possible de rejouer une partie.
-    - il sera possible d'afficher le déroulé d'une partie
-
+=== Contraintes à respecter
+* C'est toujours à un des JV de distribuer les cartes.
+  C'est le dernier joueur qui a gagné qui commence.
+  Au début, on peut choisir celui qui a l'_As de pique_ pour débuter.
+* Dans ce jeu, un joueur peu décider d'abandonner s'il juge qu'il n'a aucune chance de gagner.
+  C'est un événement rare (surtout chez les JV), mais possible.
+* L'ordre du plus fort au plus faible des cartes doit être : joker, 2, As, Roi, … 3.
+* On mémorisera l'historique d'une partie dans une collection stockée dans un fichier.
+  - il sera donc possible de rejouer une partie ou d'afficher le déroulé d'une partie
 * Une interface spécifique pourra être proposée pour une aide ou pour voir le nombre de parties gagnées par chaque joueur.
+* Vous devez implementer un Moteur de Jeu **MJ** qui joue comme un enfant.
+  - L'enfant se débarrasse de ses cartes au fur et à mesure sans aucun assemblage de ses cartes.
+    Par exemple, il ne va pas decider de faire une suite de 6 cartes, sachant que cela nécessite de briser des couples ou trio de cartes de même valeur.
+* Vous devez également implémenter au moins un MJ qui joue de manière plus sophistiquée.
+  - Par exemple, je peux jouer 1, 2 ou 3 cartes identiques, mais si j'ai 3 cartes identiques, je peux aussi decider de les jouer une par une, ou bien d'en jouer une suivie de deux.
+  - Il existe de nombreuses autres stratégies.
+    Ces stratégies dépendent des cartes en main.
+    La problématique est de décider comment assembler vos cartes pour optimiser vos chances de pouvoir vous en débarrasser le plus rapidement possible.
+  - Notez que plus les cartes sont faibles, plus il est difficile de s'en débarrasser.
+  - Au delà de deux MJ et s'ils sont _vraiment différents_ et que vous l'expliquez dans le rapport, vous aurez des points bonus
+* Une interface spécifique pourra être proposée pour "espionner" un joueur.
+  En d'autres termes, il est possible d'afficher les sorties d'un MJ et voir ses cartes pour comprendre sa décision.
+  Cela peut être le log d'un MJ qui affiche chacune de ses décisions.
+* Si vous avez `m` MJ et `v` JV, le JV[i] i in (0..v-1) est piloté par le MJ[i modulo m].
+  Chaque joueur virtuel est donc associé à un `MJ` différent.
 
-* Vous devez implementer un Moteur d'Inférence **MI** qui joue comme un enfant.
-
-  ** L'enfant se débarrasse de ses cartes au fur et à mesure de ce qu'il peut sans aucun assemblage de ses cartes. Exemple, il ne va pas decider de faire une "suite" de 6 cartes, sachant que ca nécessite de briser des couples ou trio de cartes de même valeurs.
-
-* Vous devez également implémenter au moins un MI qui joue de manière plus "intelligente". 
-
-  ** Par exemple, je peux jouer 1, 2 ou 3 cartes identiques, mais si j'ai 3 cartes identiques, je peux aussi decider de jouer une par une, ou bien de jouer une suivie de deux. 
-
-  ** Il existe de nombreux autres stratégies. Ces stratégies dépendent des cartes en main. La problématique est de décider comment "assembler vos cartes" pour optimiser vos chances de pouvoir les débarrasser le plus rapidement possible.
-
-  ** Notez que plus les cartes sont faibles, plus elles sont difficiles à s'en débarrasser.
-
-  ** Au delà de deux MI et si ils sont _vraiment différents_ et que vous expliquez dans le rapport, vous aurez des points bonus
-
-* Une interface spécifique pourra être proposée pour "espionner" un joueur. En d'autres termes, il est possible d'afficher les sorties d'un `MI` et voir ses cartes pour comprendre sa décision. Cela peut être le log d'un MI qui affiche chacune de ses décisions.
-
-* Si vous avez `m` MI et `v` JV, le JV[i] i in (0..v-1) est piloté par le MI[i modulo m]. Chaque joueur virtuel est donc associé à un `MI` différent.
-
-
-
-== Références
+=== Références
 
 **Attention**: il existe plusieurs variantes, mais celui de reference est dans le premier lien avec les contraintes ci-dessus.
 
@@ -104,7 +93,7 @@ Le projet devra donc les respecter.
 http://fusesource.github.io/jansi/[JAnsi] (couleur dans un terminal),
 https://github.com/jline/jline3[JLine] (gestion des saisies)
 
-== Manuel utilisateur
+=== Manuel utilisateur
 
 > À compléter de manière exhaustive:
 > Comment est gérer les différents utilisateurs ?
@@ -114,11 +103,11 @@ https://github.com/jline/jline3[JLine] (gestion des saisies)
 > Quelles améliorations peut on envisager pour rendre le jeu plus intéressant/performant pour l'utilisateur ?
 > Quelles évolutions peut-on envisager ?
 
-== Manuel technique
-=== Compiler le projet
+=== Manuel technique
+==== Compiler le projet
 .Sous Linux
 ----
-$ ./mvnw package
+$ JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64/ ./mvnw package
 ----
 
 .Sous Windows
