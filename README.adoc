@@ -1,7 +1,8 @@
 = Un jeu de carte chinois très populaire
 
 == Identité
-Complétez les informations ci-dessous
+Complétez les informations ci-dessous.
+
 _NOM1, Prénom1, no_étudiant1, NC1_, _git login_
 
 _NOM2, Prénom2, no_étudiant2, NC2_, _git login_
@@ -9,26 +10,21 @@ _NOM2, Prénom2, no_étudiant2, NC2_, _git login_
 _GIT url_ 
 
 == Sujet
-L'objet de ce mini-projet est de développer le jeu de carte https://boardgamegeek.com/boardgame/70451/zheng-fen[zheng-fen] qui doit fonctionner en mode commande en ligne.
+L'objet de ce mini-projet est de développer le jeu de carte https://boardgamegeek.com/boardgame/70451/zheng-fen[zheng-fen] qui doit fonctionner en mode ligne de commande.
 La règle du jeu est disponible dans la https://boardgamegeek.com/filepage/205610/regles-en-francais-plus-aide-de-jeu[section _Files_] du site précédent.
-Le jeu doit permettre de jouer contre un à trois autres adversaires qui sont des Joueurs Virtuels **JV**.
-Chaque JV joue grace à un Moteur de Jeu **MJ** modélisé par une classe de votre programme.
-Un MJ peut jouer comme un enfant qui applique une stratégie basique, ou bien jouer à l'aide de stratégies plus sophistiquées.
-Une partie se déroule dans un terminal (pas d'interface graphique).
 
-Vous devrez respecter les contraintes fonctionnelles et techniques mentionnées ci-dessous.
+Vous devrez respecter les contraintes techniques et fonctionnelles mentionnées ci-dessous.
+L'usage de bibliothèques tierces est autorisé.
+Ce qui n'est pas imposé par le sujet est laissé à votre libre interprétation.
 
-[IMPORTANT]
-====
-Vous respecterez les contraintes de développement suivantes:
-
+=== Contraintes techniques
 * Ce mini-projet est à réaliser en Java par groupe de 2 étudiants.
   - les 2 étudiants doivent coopérer à travers un même git (celui créé par _github classroom_).
   Les contributions des participants (_commits_) doivent être équilibrées.
-* Il devra comporter une documentation dans ce fichier.
+* Il devra comporter une documentation dans ce fichier (cf. ci-dessous).
   - La documentation devra décrire l'usage de l'application (_manuel utilisateur_) ainsi que la conception du jeu (_manuel technique_).
 * Vous utiliserez `git` en effectuant des commits réguliers comportant des messages informatifs.
-L'usage des branches est également exigé, montrant ainsi votre collaboration au sein du groupe.
+L'usage des branches est également exigé, attestant ainsi de votre collaboration au sein du groupe.
 * La version de Java à utiliser est la https://adoptium.net/[version 17] (ou plus récente).
 * Le _build_ sera assuré par _Maven_ et plus précisément _Maven wrapper_ (déjà intégré dans le projet).
 Aucune manipulation en dehors de Maven ne devra être nécessaire pour la compilation.
@@ -37,29 +33,28 @@ Aucune manipulation en dehors de Maven ne devra être nécessaire pour la compil
 * Un outil de https://fr.wikipedia.org/wiki/Couverture_de_code[_Code Coverage_] devra être intégré au _build_
 * Les fonctionnalités du langage Java devront être utilisées au mieux (POO, exceptions, librairie de collections, I/O, …).
 * L'application devra pouvoir être exécutée à partir d'un `jar` incluant toutes les dépendances.
-====
+* L'application fonctionnera dans un terminal (pas d'interface graphique).
 
-=== Description de l'application à réaliser
-* Pour chaque tour du jeu, l'interface:
-  - visualisera les actions de chaque joueur par des messages textuels clairs.
-    Par exemple, une action peut être _"je mets 3 rois suivis de 2 cartes de valeur 8"_.  
-  - doit afficher chaque joueur et ses messages dans une couleur distincte.
-  - doit vérifier si la phrase exprimée par le joueur non JV est correcte et si sa proposition est valide en répondant de __manière très polie__. Exemple: "désolé XXX, mais vous n'avez qu'un roi"
-  - doit afficher le nombre de cartes de chaque JV, mais pas ses valeurs de carte.
-  - doit afficher vos cartes (celles du joueur non JV), de manière ordonnées du plus fort au plus faible suivant l'ordre décrit ci-dessous.
-  - doit pour toutes les actions effectuées par l'application afficher un message clair.
-    Par exemple, s'il y a un mélange des cartes, un messages du type _"je viens de …."_ sera affiché.
-*  l'application coordonne le jeu de 2 à 4 joueurs.
-*  l'application doit s'assurer qu'une partie se termine bien et permettre au joueur qui a gagné de débuter la nouvelle partie.
+=== Description fonctionnelle
+L'application doit permettre de jouer de 2 à 4 joueurs, i.e. contre un à trois adversaires virtuels dénommés _Joueurs Virtuels_ (**JV**).
+Chaque JV joue grace à un _Moteur de Jeu_ (**MJ**) modélisé par une classe de votre programme.
+Un MJ peut jouer comme un enfant qui applique une stratégie basique, ou bien jouer à l'aide de stratégies plus sophistiquées.
+Bien entendu, l'application doit gérer l'enchaînement des manches{empty}footnote:[Une manche se termine quand il ne reste des cartes qu'à un seul joueur (cf. la règle du jeu).] et les décomptes des points jusqu'à la fin du jeu{empty}footnote:[Le jeu se termine lorsqu'un joueur atteint ou dépasse un certain nombre de points (500 en général).].
 
+==== Interface de l'application
+* visualisera les actions de chaque joueur par des messages textuels clairs.
+* Par exemple, une action peut être _"je mets 3 rois suivis de 2 cartes de valeur 8"_.  
+* doit afficher chaque joueur et ses messages dans une couleur distincte.
+* doit vérifier si la phrase exprimée par le joueur non JV est correcte et si sa proposition est valide en répondant de __manière très polie__. Exemple: "désolé XXX, mais vous n'avez qu'un roi"
+* doit afficher le nombre de cartes de chaque JV, mais pas ses valeurs de carte.
+* doit afficher vos cartes (celles du joueur non JV), de manière ordonnées du plus fort au plus faible suivant l'ordre décrit ci-dessous.
+* doit pour toutes les actions effectuées par l'application afficher un message clair.
+* Par exemple, s'il y a un mélange des cartes, un messages du type _"je viens de …."_ sera affiché.
+* choix du nombre de points déclenchant la fin du jeu
 
 === Contraintes à respecter
-* C'est toujours à un des JV de distribuer les cartes.
-  C'est le dernier joueur qui a gagné qui commence.
-  Au début, on peut choisir celui qui a l'_As de pique_ pour débuter.
 * Dans ce jeu, un joueur peu décider d'abandonner s'il juge qu'il n'a aucune chance de gagner.
   C'est un événement rare (surtout chez les JV), mais possible.
-* L'ordre du plus fort au plus faible des cartes doit être : joker, 2, As, Roi, … 3.
 * On mémorisera l'historique d'une partie dans une collection stockée dans un fichier.
   - il sera donc possible de rejouer une partie ou d'afficher le déroulé d'une partie
 * Une interface spécifique pourra être proposée pour une aide ou pour voir le nombre de parties gagnées par chaque joueur.
@@ -79,7 +74,11 @@ Aucune manipulation en dehors de Maven ne devra être nécessaire pour la compil
 * Si vous avez `m` MJ et `v` JV, le JV[i] i in (0..v-1) est piloté par le MJ[i modulo m].
   Chaque joueur virtuel est donc associé à un `MJ` différent.
 
-=== Références
+== Extensions optionnelles
+* Variantes (https://boardgamegeek.com/boardgame/215/tichu)
+* plus de 2 MJ
+
+== Références
 
 **Attention**: il existe plusieurs variantes, mais celui de reference est dans le premier lien avec les contraintes ci-dessus.
 
@@ -88,6 +87,8 @@ Aucune manipulation en dehors de Maven ne devra être nécessaire pour la compil
   - https://chrisenvadrouille.wordpress.com/2013/07/05/jour-46-les-regles-dun-jeu-de-cartes-chinois/
   - https://www.pagat.com/climbing/doudizhu.html
 
+
+* https://github.com/lyudaio/jcards
 
 * Quelques bibliothèques :
 http://fusesource.github.io/jansi/[JAnsi] (couleur dans un terminal),
