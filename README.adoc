@@ -10,8 +10,8 @@ _NOM2, Prénom2, no_étudiant2, NC2_, _git login_
 _GIT url_ 
 
 == Sujet
-L'objet de ce mini-projet est de développer le jeu de carte https://boardgamegeek.com/boardgame/70451/zheng-fen[zheng-fen] qui doit fonctionner en mode ligne de commande.
-La règle du jeu est disponible dans la https://boardgamegeek.com/filepage/205610/regles-en-francais-plus-aide-de-jeu[section _Files_] du site précédent.
+L'objet de ce mini-projet est de développer le jeu de carte Zheng Shangyou (争上游)  qui doit fonctionner en mode ligne de commande.
+La règle du jeu est disponible ici http://persee.prism.uvsq.fr/pub/cp/prj/ZhengShangyou.html[ZhengShangyou].
 
 Vous devrez respecter les contraintes techniques et fonctionnelles mentionnées ci-dessous.
 L'usage de bibliothèques tierces est autorisé.
