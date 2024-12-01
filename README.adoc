@@ -3,9 +3,9 @@
 == Identité
 Complétez les informations ci-dessous.
 
-_NOM1, Prénom1, no_étudiant1, NC1_, _git login_
+Abi, Mohamed, 22408077, 50, _git login_
 
-_NOM2, Prénom2, no_étudiant2, NC2_, _git login_
+_NOM2, mehdi, no_étudiant2, NC2_, _git login_
 
 _GIT url_ 
 
